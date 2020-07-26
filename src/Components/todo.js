@@ -84,24 +84,41 @@ export default class Todo extends React.Component{
         if(editText!==''){
             this.state.todos.forEach((todo) => {
                 if(todo.id===id){
-                    todo.data.taskName = editText;
-                    this.setState({
-                        todo: [...this.state.todos]
-                    })
+                    if(editText!==todo.data.taskName){
+                        todo.data.taskName = editText;
+                        this.setState({
+                            todo: [...this.state.todos]
+                        })
+
+                        // db.collection("todo").doc(id).get().then((snap)=>{
+                        //     snap.forEach((doc)=>{
+                        //         var obj ={};
+                        //         obj['id'] = doc.id;
+                        //         obj['data'] = doc.data();
+                        //         this.setState({
+                        //             todos: [...this.state.todos, obj]
+                        //         })
+                        //     })
+                        // })
+
+                        db.collection("todo").doc(id).set((snap) => {
+                            snap.taskName = editText;
+                        })
+                    }
                 }
             })
         }
 
-        db.collection("todo").get().then((snap)=>{
-            snap.forEach((doc)=>{
-                var obj ={};
-                obj['id'] = doc.id;
-                obj['data'] = doc.data();
-                this.setState({
-                    todos: [...this.state.todos, obj]
-                })
-            })
-        })
+        // db.collection("todo").get().then((snap)=>{
+        //     snap.forEach((doc)=>{
+        //         var obj ={};
+        //         obj['id'] = doc.id;
+        //         obj['data'] = doc.data();
+        //         this.setState({
+        //             todos: [...this.state.todos, obj]
+        //         })
+        //     })
+        // })
     }
 
     render(){
