@@ -118,3 +118,14 @@
 .post:hover .actions i{
     font-size: 11px;
 }
+
+
+@media (max-width: 768px){
+    .container{
+        width: 80%;
+    }
+
+    .actions{
+        width: 16%;
+    }
+}

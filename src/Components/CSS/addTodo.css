@@ -52,3 +52,13 @@ button.dis {
 #butn:active{
     background-color: rgba(144,238,144 ,0.8 );
 }
+
+@media (max-width: 768px){
+    .text-input #task{
+        width: 70%;
+    }
+
+    .text-input button{
+        width: 16%;
+    }
+}
